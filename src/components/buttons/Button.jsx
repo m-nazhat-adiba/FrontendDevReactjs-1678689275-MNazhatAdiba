@@ -1,8 +1,8 @@
 import React from "react";
 
 const VARIANTS = {
-  primary: " bg-blue-900 text-white",
-  outlined: "border-[1px] border-gray-500 text-gray-800",
+  primary: " bg-blue-900 text-white hover:bg-blue-800",
+  outlined: "border-[1px] border-gray-500 text-gray-800 hover:bg-gray-50",
 };
 
 const Button = ({ children = "Button", variant = "primary" }) => {
