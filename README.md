@@ -3,7 +3,13 @@
 - Node.js: 20.11.0
 - npm: 10.2.4
 
-* Run npm install
+# Before Developing
+
+- Run npm install
+
+# Note
+
+- npm run dev = run development
 
 # Link Deployment
 
