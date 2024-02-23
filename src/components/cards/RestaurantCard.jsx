@@ -29,7 +29,7 @@ const RestaurantCard = ({ data, handleDetail }) => {
         <h2 className="font-semibold">{data.name}</h2>
         {/* place star rating */}
         <StarRating totalStars={Math.floor(data.rating)} />
-        <div className="flex justify-between w-full text-sm text-gray-600">
+        <div className="flex justify-between w-full text-xs text-gray-600">
           <p>{`${additionalData.data.restaurant.categories[0].name.toUpperCase()} ${
             data.priceRange
           }`}</p>
