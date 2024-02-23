@@ -2,7 +2,7 @@ import React from "react";
 import StarRating from "../common/StarRating";
 
 const ReviewCard = ({ data }) => {
-  const randomRating = Math.floor(Math.random() * 2);
+  const randomRating = Math.floor(Math.random() * 3);
   return (
     <div className="flex w-full gap-4 border-2 border-gray-200 p-2">
       {/* image */}
@@ -17,7 +17,7 @@ const ReviewCard = ({ data }) => {
       <section className="w-full">
         <h2 className="font-semibold">{data.name}</h2>
         {/* place star rating */}
-        <StarRating totalStars={randomRating + 4} />
+        <StarRating totalStars={randomRating + 3} />
         <p>{data.review}</p>
       </section>
     </div>
