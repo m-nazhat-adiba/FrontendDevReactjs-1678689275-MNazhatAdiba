@@ -66,7 +66,7 @@ const Home = () => {
       </section>
 
       {/* restaurant list */}
-      <section className="flex flex-col w-full">
+      <section className="flex flex-col w-full gap-12">
         {/* Filter tabs */}
         <div className="w-full flex flex-col gap-4">
           <div className="p-[1px] w-full bg-gray-200"></div>
