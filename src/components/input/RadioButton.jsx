@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-function RadioButton() {
-  const [isChecked, setIsChecked] = useState(false);
-
+function RadioButton({ setStatus, status }) {
   const handleToggle = () => {
-    setIsChecked(!isChecked);
+    setStatus(!status);
   };
 
   return (
@@ -13,7 +11,7 @@ function RadioButton() {
         <input
           type="checkbox"
           className="w-4 h-4 rounded-full"
-          checked={isChecked}
+          checked={status}
           onChange={handleToggle}
         />
         <span className="ml-2">Open Now</span>

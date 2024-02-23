@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import RestaurantCard from "../components/cards/RestaurantCard";
 import Button from "../components/buttons/Button";
-import { restaurantDummyData } from "../constants/dummyRestaurant";
 import RadioButton from "../components/input/RadioButton";
 import SelectButton from "../components/input/SelectButton";
+import usePatchedData from "../hooks/usePatchedData";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [filter, setFilter] = useState(" ");
+  const [priceValue, setPriceValue] = useState(" ");
+  const [showCount, setShowCount] = useState(10);
+  const priceList = ["$", "$$", "$$$", "$$$$", "$$$$"];
+  const categoryList = ["Italia", "Modern", "Bali"];
+
+  const restaurantData = usePatchedData(
+    `https://restaurant-api.dicoding.dev/search?q=${filter}`
+  );
+
+  const navigate = useNavigate();
+  const handleDetail = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
+  if (restaurantData.isLoading) {
+    return <p>Loading</p>;
+  } else if (restaurantData.error) {
+    return <p>{restaurantData.error}</p>;
+  }
+
+  let filteredData = isOpen
+    ? restaurantData.data.filter((item) => item.shopStatus === isOpen)
+    : restaurantData.data;
+
+  if (priceValue.trim() !== "") {
+    filteredData = filteredData.filter(
+      (item) => item.priceRange === priceValue
+    );
+  }
+
+  const loadMore = () => {
+    setShowCount((prevShow) => prevShow + 10);
+  };
+
   return (
     <div className="container mx-auto w-screen h-full flex flex-col py-8">
       {/* Page Header */}
@@ -28,13 +65,22 @@ const Home = () => {
             <p>Filter by:</p>
             {/* place button here */}
             <div>
-              <RadioButton />
+              <RadioButton setStatus={setIsOpen} status={isOpen} />
             </div>
             <div>
-              <SelectButton />
+              <SelectButton
+                title="Price"
+                list={priceList}
+                setFilter={setPriceValue}
+              />
             </div>
             <div>
-              <SelectButton />
+              <SelectButton
+                title="Category"
+                list={categoryList}
+                filter={filter}
+                setFilter={setFilter}
+              />
             </div>
           </div>
           <div className="p-[1px] w-full bg-gray-200"></div>
@@ -42,15 +88,23 @@ const Home = () => {
 
         {/* cards */}
         <div className="grid grid-cols-5 gap-8">
-          {restaurantDummyData.map((item) => (
-            <RestaurantCard data={item} key={item.id} />
+          {filteredData.slice(0, showCount).map((item) => (
+            <RestaurantCard
+              handleDetail={handleDetail}
+              data={item}
+              key={item.id}
+            />
           ))}
         </div>
 
         {/* Load more button */}
-        <div className="w-1/4 mx-auto mt-12">
-          <Button variant="outlined">LOAD MORE</Button>
-        </div>
+        {showCount < filteredData.length && (
+          <div className="w-1/4 mx-auto mt-12">
+            <Button variant="outlined" action={loadMore}>
+              LOAD MORE
+            </Button>
+          </div>
+        )}
       </section>
     </div>
   );

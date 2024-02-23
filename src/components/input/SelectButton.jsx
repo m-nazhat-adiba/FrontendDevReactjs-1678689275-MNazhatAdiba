@@ -1,6 +1,13 @@
 import React from "react";
 
-const SelectButton = () => {
+const SelectButton = ({ list, filter, setFilter, title = "select" }) => {
+  const selection = list;
+
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    setFilter(selectedValue);
+  };
+
   return (
     <form className="w-fit">
       <label
@@ -11,14 +18,16 @@ const SelectButton = () => {
       </label>
       <select
         id="countries"
-        defaultValue="default"
+        value={filter} // Bind value to the filter state
+        onChange={handleSelectChange} // Handle select change event
         className="border-b-2 border-t-0 border-l-0 border-r-0 border-b-gray-500 text-gray-900 text-sm block w-full p-2.5 pr-10"
       >
-        <option value="default">Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
+        <option value=" ">{title}</option>
+        {selection.map((item, key) => (
+          <option key={key} value={item}>
+            {item}
+          </option>
+        ))}
       </select>
     </form>
   );
