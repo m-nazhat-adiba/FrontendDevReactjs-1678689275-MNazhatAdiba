@@ -1,5 +1,6 @@
 # Packages Version
 
+- React: ^18.2.0
 - Node.js: 20.11.0
 - npm: 10.2.4
 
