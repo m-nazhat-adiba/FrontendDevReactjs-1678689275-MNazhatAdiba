@@ -46,7 +46,7 @@ const RestaurantCard = ({ data, handleDetail }) => {
         </div>
       </section>
       {/* CTA */}
-      <div>
+      <div className="pt-4">
         <Button action={() => handleDetail(data.id)}>LEARN MORE</Button>
       </div>
     </div>
