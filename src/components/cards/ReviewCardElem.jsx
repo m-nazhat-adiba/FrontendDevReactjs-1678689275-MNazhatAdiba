@@ -4,11 +4,11 @@ import StarRating from "../common/StarRating";
 const ReviewCard = ({ data }) => {
   const randomRating = Math.floor(Math.random() * 2);
   return (
-    <div className="flex w-full gap-4">
+    <div className="flex w-full gap-4 border-2 border-gray-200 p-2">
       {/* image */}
       <div className="w-10">
         <img
-          src={"/vite.svg"}
+          src={"/avatar.svg"}
           alt="restaurant image"
           className="w-full h-auto"
         />
