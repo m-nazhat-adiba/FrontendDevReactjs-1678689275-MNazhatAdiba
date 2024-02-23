@@ -24,8 +24,8 @@ const SelectButton = ({ list, filter, setFilter, title = "select" }) => {
       >
         <option value=" ">{title}</option>
         {selection.map((item, key) => (
-          <option key={key} value={item}>
-            {item}
+          <option key={key} value={item.value}>
+            {item.name}
           </option>
         ))}
       </select>

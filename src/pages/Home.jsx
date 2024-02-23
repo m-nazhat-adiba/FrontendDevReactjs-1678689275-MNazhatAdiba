@@ -11,8 +11,17 @@ const Home = () => {
   const [filter, setFilter] = useState(" ");
   const [priceValue, setPriceValue] = useState(" ");
   const [showCount, setShowCount] = useState(10);
-  const priceList = ["$", "$$", "$$$", "$$$$", "$$$$"];
-  const categoryList = ["Italia", "Modern", "Bali"];
+  const priceList = [
+    { value: "$", name: "<15k" },
+    { value: "$$", name: "15k - 30k" },
+    { value: "$$$", name: "30k - 50k" },
+    { value: "$$$$", name: ">50k" },
+  ];
+  const categoryList = [
+    { value: "Italia", name: "Italia" },
+    { value: "Moder", name: "Modern" },
+    { value: "Bali", name: "Bali" },
+  ];
 
   const restaurantData = usePatchedData(
     `https://restaurant-api.dicoding.dev/search?q=${filter}`
